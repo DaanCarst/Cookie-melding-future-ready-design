@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300&display=swap');
+
+@font-face {
+    font-family: outfit;
+    src: url(Outfit-VariableFont_wght.ttf);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: outfit;
+}
+
+body {
+    background-color: #f5f8ff;
+    padding-bottom: 10em;
+}
+
+.cookie-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    background-color: black;
+    color: white;
+    position: fixed;
+    margin: .3em;
+    padding: .5em;
+    border-radius: 10px;
+    gap: 4em;
+    position: fixed;
+    bottom: 0;
+}
+
+.text-container {
+    max-width: 45em;
+    padding: .8em;
+}
+
+h2 {
+    font-size: 1.4rem;
+    margin-bottom: .3em;
+}
+
+
+.button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 10em;
+    padding: 1em;
+}
+
+.accept-deny-button {
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+    padding: .5em;
+    min-width: 22em;
+    height: 3em;
+    margin-bottom: .4em;
+    border: none;
+    transition: 1s;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.accept-deny-button:hover  {
+    background-color: #d8dbe2;
+}
+
+.policy {
+    font-size: 1rem;
+}
+
+.settings-button, .view-policy {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.settings-button {
+    font-size: .8rem;
+    background: none;
+	color: inherit;
+	border: none;
+	cursor: pointer;
+	outline: inherit;
+}
+
+.view-policy {
+    background: none;
+	color: inherit;
+	border: none;
+	cursor: pointer;
+	outline: inherit;
+}
+
+.settings-button:focus-visible, .view-policy:focus-visible {
+    border: 1px solid white;
+    border-radius: 6px;
+}
+
+
+@media screen and (min-width: 70.6em) {
+    .cookie-container {
+        transform: translate(-50%);
+        left: 50%;
+    }
+
+    .text-container {
+        min-width: 45em;
+        padding: .8em;
+    }
+  }
+
+@media (max-width: 700px) {
+    .cookie-container {
+        flex-direction: column;
+        gap: 0;
+
+    }
+  }
