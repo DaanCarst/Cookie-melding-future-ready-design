@@ -3,17 +3,18 @@
     <head>
         <title>Cookies Future Ready Design</title>
         <link rel="stylesheet" href="style.css">
+        <script src="index.js"></script>
     </head>
 
     <body>
-        <section class="cookie-container" aria-label="cookie-banner">
+        <section class="cookie-container" aria-label="cookie-banner" id="cookieConsentBanner">
             <section class="text-container">
                 <h2>Deze website gebruikt cookies</h2>
                 <p class="policy">Door op “alle cookies accepteren” te klikken gaat u akkoord met het opslaan van cookies in uw apparaat voor het verbeteren van websitenavigatie, het analyseren van websitegebruik en om ons te helpen bij onze marketingprojecten. <button class="view-policy">View our Cookie Policy</button></p>
             </section>
             <section class="button-container">
-                <button class="accept-deny-button">Alle cookies accepteren</button>
-                <button class="accept-deny-button">Alles afwijzen</button>
+                <button class="accept-deny-button" id="acceptCookies">Alle cookies accepteren</button>
+                <button class="accept-deny-button" id="declineCookies">Alles afwijzen</button>
                 <button class="settings-button">Cookie-instellingen</button>
             </section>
         </section>
