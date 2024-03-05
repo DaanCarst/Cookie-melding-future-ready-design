@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cookie Banner Example</title>
+<style>
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #333;
+  color: #fff;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+.accept-btn, .decline-btn {
+  padding: 5px 10px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.accept-btn {
+  background: #4CAF50;
+  border: none;
+}
+
+.decline-btn {
+  background: #f44336;
+  border: none;
+}
+</style>
+</head>
+<body>
+
+<div class="cookie-banner" id="cookieBanner">
+  This website uses cookies to ensure you get the best experience on our website.
+  <button class="accept-btn" onclick="acceptCookies()">Accept</button>
+  <button class="decline-btn" onclick="declineCookies()">Decline</button>
+</div>
+
+<script>
+function acceptCookies() {
+  setCookie("cookiesAccepted", "true", 365); // Cookie expires in 365 days
+  document.getElementById("cookieBanner").style.display = "none";
+}
+
+function declineCookies() {
+  // Handle decline action, e.g., redirect to a page explaining more or adjust functionality accordingly
+}
+
+function setCookie(name, value, days) {
+  var expires = "";
+  if (days) {
+    var date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    expires = "; expires=" + date.toUTCString();
+  }
+  document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
+
+function getCookie(name) {
+  var nameEQ = name + "=";
+  var ca = document.cookie.split(';');
+  for(var i=0;i < ca.length;i++) {
+    var c = ca[i];
+    while (c.charAt(0)==' ') c = c.substring(1,c.length);
+    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+  }
+  return null;
+}
+
+window.onload = function() {
+  if (getCookie("cookiesAccepted")) {
+    document.getElementById("cookieBanner").style.display = "none";
+  }
+}
+</script>
+
+</body>
+</html>

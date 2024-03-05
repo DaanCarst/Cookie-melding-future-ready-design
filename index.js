@@ -1,24 +1,36 @@
-document.addEventListener('DOMContentLoaded', function() {
-    var consent = localStorage.getItem('userConsent');
-    if (consent === null) {
-      document.getElementById('cookieConsentBanner').style.display = 'block';
-    } else if (consent === 'true') {
-      initializeTracking(); 
+  function acceptCookies() {
+    setCookie("cookiesAccepted", "true", 365); // Cookie expires in 365 days
+    document.getElementById("cookieBanner").style.display = "none";
+  }
+  
+  function declineCookies() {
+    // Handle decline action, e.g., redirect to a page explaining more or adjust functionality accordingly
+  }
+  
+  function setCookie(name, value, days) {
+    var expires = "";
+    if (days) {
+      var date = new Date();
+      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+      expires = "; expires=" + date.toUTCString();
     }
-    
-    document.getElementById('acceptCookies').addEventListener('click', function() {
-      localStorage.setItem('userConsent', 'true');
-      document.getElementById('cookieConsentBanner').style.display = 'none';
-      initializeTracking(); 
-    });
+    document.cookie = name + "=" + (value || "") + expires + "; path=/";
+  }
   
-    document.getElementById('declineCookies').addEventListener('click', function() {
-      localStorage.setItem('userConsent', 'false');
-      document.getElementById('cookieConsentBanner').style.display = 'none';
-    });
-  });
+  function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+      var c = ca[i];
+      while (c.charAt(0)==' ') c = c.substring(1,c.length);
+      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+  }
   
-  function initializeTracking() {
-    console.log('Tracking initialized.');
+  window.onload = function() {
+    if (getCookie("cookiesAccepted")) {
+      document.getElementById("cookieBanner").style.display = "none";
+    }
   }
   
