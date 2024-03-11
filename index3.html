@@ -1,107 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cookie Banner</title>
-<style>
-    /* Cookie banner styles */
-    .cookie-banner {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background-color: pink; /* Pink background color */
-        padding: 10px 20px;
-        text-align: center;
-        z-index: 9999;
-        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-        opacity: 0;
-        animation: fadeIn 5s forwards, spinIn 0.5s ease 5s forwards;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookies Future Ready Design</title>
+    <style>
+        /* Add your custom styles here */
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300&display=swap');
 
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
+        @font-face {
+            font-family: outfit;
+            src: url(Outfit-VariableFont_wght.ttf);
         }
-        to {
-            opacity: 1;
-        }
-    }
 
-    @keyframes spinIn {
-        from {
-            transform: translateY(100%) rotate(0deg);
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: outfit;
         }
-        to {
-            transform: translateY(0) rotate(360deg);
-        }
-    }
 
-    .cookie-banner p {
-        margin: 0;
-    }
-    .cookie-banner button {
-        background-color: #fff;
-        color: #000;
-        border: none;
-        padding: 5px 10px;
-        cursor: pointer;
-        margin-left: 10px;
-    }
-</style>
+        body {
+            background-color: #f5f8ff;
+            padding-bottom: 10em;
+        }
+
+        .cookie-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background-color: black;
+            color: white;
+            position: fixed;
+            margin: .3em;
+            padding: .5em;
+            border-radius: 10px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 26em;
+        }
+
+        .text-container {
+            max-width: 30em;
+            padding: .8em;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            margin-bottom: .3em;
+        }
+
+        .button-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 10em;
+            padding: 1em;
+        }
+
+        .accept-deny-button {
+            background-color: white;
+            color: black;
+            border-radius: 10px;
+            padding: .5em;
+            min-width: 22em;
+            height: 3em;
+            margin-bottom: .4em;
+            border: none;
+            transition: 1s;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .accept-deny-button:hover {
+            background-color: #d8dbe2;
+        }
+
+        .settings-button {
+            font-size: .8rem;
+            background: none;
+            color: inherit;
+            border: none;
+            cursor: pointer;
+            outline: inherit;
+        }
+
+        .view-policy {
+            background: none;
+            color: inherit;
+            border: none;
+            cursor: pointer;
+            outline: inherit;
+        }
+
+        .settings-button:focus-visible,
+        .view-policy:focus-visible {
+            border: 1px solid white;
+            border-radius: 6px;
+        }
+
+        .policy {
+            font-size: 1rem;
+        }
+
+        .settings-button,
+        .view-policy {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .cookie-settings {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .cookie-settings.show {
+            display: block;
+        }
+    </style>
 </head>
+
 <body>
-    <div class="cookie-banner">
-        <p>This website uses cookies to ensure you get the best experience on our website. 
-        <button onclick="acceptCookies()">Accept</button>
-        <button onclick="denyCookies()">Deny</button>
-        </p>
-    </div>
+    <section class="cookie-container" aria-label="cookie-banner" id="cookieBanner">
+        <section class="text-container">
+            <h2>Deze website gebruikt cookies</h2>
+            <p class="policy">Door op “alle cookies accepteren” te klikken gaat u akkoord met het opslaan van cookies in uw apparaat voor het verbeteren van websitenavigatie, het analyseren van websitegebruik en om ons te helpen bij onze marketingprojecten. <button class="view-policy">View our Cookie Policy</button></p>
+        </section>
+        <section class="button-container">
+            <button class="accept-deny-button" onclick="acceptCookies()">Alle cookies accepteren</button>
+            <button class="accept-deny-button" onclick="declineCookies()">Alles afwijzen</button>
+            <button class="settings-button" onclick="toggleSettings()">Cookie-instellingen</button>
+        </section>
+        <section class="cookie-settings" id="cookieSettings">
+            <h3>Cookie-instellingen</h3>
+            <label>
+                <input type="checkbox" id="analyticsCheckbox"> Enable Analytics
+            </label>
+            <br>
+            <label>
+                <input type="checkbox" id="preferencesCheckbox"> Enable Preferences
+            </label>
+            <br>
+            <button class="cookie-btn" onclick="applySettings()">Toepassen</button>
+            <button class="cookie-btn" onclick="closeCookieSettings()">Sluiten</button>
+        </section>
+    </section>
 
     <script>
-        // Function to set cookie
-        function setCookie(name, value, seconds) {
+        function acceptCookies() {
+            // Code to set cookies and close the popup
+            console.log("Alle cookies geaccepteerd");
+            closeCookiePopup();
+        }
+
+        function declineCookies() {
+            // Code to decline cookies and close the popup
+            console.log("Alles afgewezen");
+            closeCookiePopup();
+        }
+
+        function toggleSettings() {
+            var settings = document.getElementById('cookieSettings');
+            settings.classList.toggle('show');
+        }
+
+        function applySettings() {
+            var analyticsCheckbox = document.getElementById('analyticsCheckbox');
+            var preferencesCheckbox = document.getElementById('preferencesCheckbox');
+
+            if (analyticsCheckbox.checked) {
+                // Code to set analytics cookie
+                setCookie("analytics", "enabled", 365);
+            } else {
+                // Code to remove analytics cookie
+                deleteCookie("analytics");
+            }
+
+            if (preferencesCheckbox.checked) {
+                // Code to set preferences cookie
+                setCookie("preferences", "enabled", 365);
+            } else {
+                // Code to remove preferences cookie
+                deleteCookie("preferences");
+            }
+
+            closeCookiePopup();
+        }
+
+        function closeCookiePopup() {
+            var popup = document.getElementById('cookieBanner');
+            popup.classList.remove('show');
+        }
+
+        function closeCookieSettings() {
+            var settings = document.getElementById('cookieSettings');
+            settings.classList.remove('show');
+        }
+
+        function setCookie(name, value, days) {
             var expires = "";
-            if (seconds) {
+            if (days) {
                 var date = new Date();
-                date.setTime(date.getTime() + (seconds * 1000)); // Convert seconds to milliseconds
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
                 expires = "; expires=" + date.toUTCString();
             }
             document.cookie = name + "=" + (value || "") + expires + "; path=/";
         }
 
-        // Function to accept cookies and hide the banner
-        function acceptCookies() {
-            setCookie("cookieConsent", "accepted", 10); // Set cookie for 10 seconds
-            document.querySelector('.cookie-banner').style.display = 'none';
-        }
-
-        // Function to deny cookies and hide the banner
-        function denyCookies() {
-            setCookie("cookieConsent", "denied", 10); // Set cookie for 10 seconds
-            document.querySelector('.cookie-banner').style.display = 'none';
-        }
-
-        // Function to check if user has already accepted or denied cookies
-        window.onload = function () {
-            var cookieConsent = getCookie("cookieConsent");
-            if (cookieConsent === "accepted" || cookieConsent === "denied") {
-                document.querySelector('.cookie-banner').style.display = 'none';
-            }
-        };
-
-        // Function to get cookie value
         function getCookie(name) {
             var nameEQ = name + "=";
             var ca = document.cookie.split(';');
             for (var i = 0; i < ca.length; i++) {
                 var c = ca[i];
-                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
             }
             return null;
         }
+
+        function deleteCookie(name) {
+            document.cookie = name + '=; Max-Age=-99999999;';
+        }
+
+        function checkCookies() {
+            var analyticsCookie = getCookie("analytics");
+            var preferencesCookie = getCookie("preferences");
+
+            if (analyticsCookie === "enabled") {
+                document.getElementById("analyticsCheckbox").checked = true;
+            }
+
+            if (preferencesCookie === "enabled") {
+                document.getElementById("preferencesCheckbox").checked = true;
+            }
+        }
+
+        window.onload = checkCookies;
     </script>
 </body>
 </html>
