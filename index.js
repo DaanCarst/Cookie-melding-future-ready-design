@@ -4,18 +4,18 @@
   }
   
   function declineCookies() {
-    // Handle decline action, e.g., redirect to a page explaining more or adjust functionality accordingly
+    document.getElementById("cookieBanner").style.display = "none";
   }
   
-  function setCookie(name, value, days) {
+  function setCookie(name, value, seconds) {
     var expires = "";
-    if (days) {
-      var date = new Date();
-      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-      expires = "; expires=" + date.toUTCString();
+    if (seconds) {
+        var date = new Date();
+        date.setTime(date.getTime() + (seconds * 1000)); // Convert seconds to milliseconds
+        expires = "; expires=" + date.toUTCString();
     }
     document.cookie = name + "=" + (value || "") + expires + "; path=/";
-  }
+}
   
   function getCookie(name) {
     var nameEQ = name + "=";
